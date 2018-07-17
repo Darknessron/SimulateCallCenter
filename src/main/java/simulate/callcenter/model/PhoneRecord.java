@@ -21,7 +21,7 @@ public class PhoneRecord {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	private String customerName;
 	private ProblemLevel level;
@@ -118,13 +118,13 @@ public class PhoneRecord {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 }
