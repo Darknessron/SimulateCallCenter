@@ -15,10 +15,12 @@ import simulate.callcenter.utils.ResolveDice;
 
 public class TechnicalLead extends AbstractPhonePicker {
 	
-	private TechnicalLead()	{}
+	private TechnicalLead(String name)	{
+		this.name = name;
+	}
 	
 	private static class StaticHolder {
-        static final TechnicalLead INSTANCE = new TechnicalLead();
+        static final TechnicalLead INSTANCE = new TechnicalLead("TechnicalLead");
     }
 	
 	public static TechnicalLead getSingleton() {
@@ -30,7 +32,8 @@ public class TechnicalLead extends AbstractPhonePicker {
 		boolean result = false;
 
 		this.isOccupied = true;
-		talking();
+		record.setSomeoneAnswer(true);
+		talking(record.getCustomerName());
 		
 		result = ResolveDice.IsProblemResolve();
 		if (result)	{

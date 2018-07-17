@@ -14,10 +14,12 @@ import simulate.callcenter.utils.ResolveDice;
  */
 public class ProductManager extends AbstractPhonePicker {
 	
-	private ProductManager()	{}
+	private ProductManager(String name)	{
+		this.name = name;
+	}
 	
 	private static class StaticHolder {
-        static final ProductManager INSTANCE = new ProductManager();
+        static final ProductManager INSTANCE = new ProductManager("ProductManager");
     }
 	
 	public static ProductManager getSingleton() {
@@ -29,7 +31,8 @@ public class ProductManager extends AbstractPhonePicker {
 		boolean result = false;
 
 		this.isOccupied = true;
-		talking();
+		record.setSomeoneAnswer(true);
+		talking(record.getCustomerName());
 		
 		result = ResolveDice.IsProblemResolve();
 		if (result)	{

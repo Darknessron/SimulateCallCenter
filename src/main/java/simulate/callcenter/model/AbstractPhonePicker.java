@@ -14,7 +14,7 @@ public abstract class AbstractPhonePicker {
 	private static final Random R = new Random();
 
 	protected boolean isOccupied;
-	private String name;
+	protected String name;
 	
 	/**
 	 * Answer the phone
@@ -24,14 +24,14 @@ public abstract class AbstractPhonePicker {
 	public abstract boolean pickUpPhone(PhoneRecord record);
 	
 
-	public void talking()	{
-		System.out.println("start talking to customer......");
+	public void talking(String customerName)	{
+		System.out.println(getName() + " start talking to customer "+customerName);
 		try {
 			TimeUnit.SECONDS.sleep(R.nextInt(10));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("end of talking");
+		System.out.println(getName() + " end of talking with "+customerName);
 	}
 
 	/**

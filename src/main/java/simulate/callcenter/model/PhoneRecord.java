@@ -5,17 +5,28 @@ package simulate.callcenter.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import simulate.callcenter.utils.ProblemLevel;
 
 /**
  * @author Ron
  *
  */
+@Entity
 public class PhoneRecord {
+	
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	
 	private String customerName;
 	private ProblemLevel level;
 	private boolean isSolved;
+	private boolean isSomeoneAnswer;
 	private String resolveName;
 	private Date createTime;
 	private Date updateTime;
@@ -92,6 +103,28 @@ public class PhoneRecord {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	
+	/**
+	 * @return the isSomeoneAnswer
+	 */
+	public boolean isSomeoneAnswer() {
+		return isSomeoneAnswer;
+	}
+	/**
+	 * @param isSomeoneAnswer the isSomeoneAnswer to set
+	 */
+	public void setSomeoneAnswer(boolean isSomeoneAnswer) {
+		this.isSomeoneAnswer = isSomeoneAnswer;
+	}
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 }

@@ -20,7 +20,8 @@ public class CustomerService extends AbstractPhonePicker {
 		
 		this.isOccupied = true;
 		
-		talking();
+		record.setSomeoneAnswer(true);
+		talking(record.getCustomerName());
 		
 		result = ResolveDice.IsProblemResolve();
 		if (result)	{

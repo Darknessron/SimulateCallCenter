@@ -45,10 +45,6 @@
 			<artifactId>commons-chain</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
