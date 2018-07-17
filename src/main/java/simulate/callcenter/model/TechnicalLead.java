@@ -7,7 +7,6 @@ import java.util.Calendar;
 
 import simulate.callcenter.utils.ProblemLevel;
 import simulate.callcenter.utils.ResolveDice;
-import simulate.callcenter.utils.TalkingUtil;
 
 /**
  * @author Ron
@@ -31,7 +30,7 @@ public class TechnicalLead extends AbstractPhonePicker {
 		boolean result = false;
 
 		this.isOccupied = true;
-		TalkingUtil.talking();
+		talking();
 		
 		result = ResolveDice.IsProblemResolve();
 		if (result)	{
