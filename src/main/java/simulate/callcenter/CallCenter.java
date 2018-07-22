@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.chain.Chain;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.impl.ContextBase;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +29,8 @@ public class CallCenter {
 	private static final Chain problemSolveChain = new ProblemSolveChain();
 	
 	private static PhoneRecordRepository phoneRecordRepository;
+	
+	private static final Logger logger = LogManager.getLogger(CallCenter.class);
 	
 	@Autowired
 	private PhoneRecordRepository repository;
@@ -49,10 +53,10 @@ public class CallCenter {
 		
 		problemSolveChain.execute(context);
 		if (!phoneRecord.isSomeoneAnswer())	{
-			System.out.println("no one answer "+ customerName);
+			logger.info("no one answer {}", customerName);
 		}
 		
 		phoneRecord = phoneRecordRepository.save(phoneRecord);
-		System.out.println(phoneRecord.getId());
+		logger.info("Saved Phone Record ID : {}", phoneRecord.getId());
 	}
 }

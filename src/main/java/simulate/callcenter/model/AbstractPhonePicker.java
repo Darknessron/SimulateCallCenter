@@ -6,11 +6,15 @@ package simulate.callcenter.model;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author Ron
  *
  */
 public abstract class AbstractPhonePicker {
+	private static final Logger logger = LogManager.getLogger(AbstractPhonePicker.class);
 	private static final Random R = new Random();
 
 	protected boolean isOccupied;
@@ -25,13 +29,13 @@ public abstract class AbstractPhonePicker {
 	
 
 	public void talking(String customerName)	{
-		System.out.println(getName() + " start talking to customer "+customerName);
+		logger.info("{} start talking to customer {}", getName() , customerName);
 		try {
 			TimeUnit.SECONDS.sleep(R.nextInt(10));
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
-		System.out.println(getName() + " end of talking with "+customerName);
+		logger.info("{} end of talking with {}", getName() , customerName);
 	}
 
 	/**

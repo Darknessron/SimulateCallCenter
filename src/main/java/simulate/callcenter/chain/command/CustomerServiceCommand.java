@@ -5,6 +5,8 @@ package simulate.callcenter.chain.command;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import simulate.callcenter.CallCenter;
 import simulate.callcenter.exception.AllBusyException;
@@ -18,6 +20,8 @@ import simulate.callcenter.utils.CustomerServicePool;
  */
 public class CustomerServiceCommand implements Command {
 
+	private static final Logger logger = LogManager.getLogger(CustomerServiceCommand.class);
+
 	/* (non-Javadoc)
 	 * @see org.apache.commons.chain.Command#execute(org.apache.commons.chain.Context)
 	 */
@@ -30,7 +34,7 @@ public class CustomerServiceCommand implements Command {
 			isProblemResolve = cs.pickUpPhone(phoneRecord);
 			CustomerServicePool.releaseCustomerService(cs);
 		}catch(AllBusyException ex)	{
-			System.out.println("All CS are busy, escalate to next level");
+			logger.error("All CS are busy, escalate to next level");
 			return false;
 		}
 		return isProblemResolve;

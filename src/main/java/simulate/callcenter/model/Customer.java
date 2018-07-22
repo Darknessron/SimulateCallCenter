@@ -6,6 +6,9 @@ package simulate.callcenter.model;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import simulate.callcenter.CallCenter;
 
 /**
@@ -13,6 +16,7 @@ import simulate.callcenter.CallCenter;
  *
  */
 public class Customer implements Runnable {
+	private static final Logger logger = LogManager.getLogger(Customer.class);
 	private String name;
 	private static final Random R = new Random();
 	
@@ -27,7 +31,7 @@ public class Customer implements Runnable {
 			TimeUnit.SECONDS.sleep(R.nextInt(100));
 			CallCenter.answerTheCall(getName());
 		} catch (Exception e) {
-			System.out.println("CallCenter is down");
+			logger.error("CallCenter is down", e);
 		}
 	}
 
